@@ -1,0 +1,10 @@
+cat	act	1
+cat	hat	1
+cat	hag	2
+cat	cat	0
+Lorem ipsum dolor sit amet	Lorem pisum dolor sit amet	1
+Lorem ipsum dolor sit amet	Lorem pium dolor sit amet	2
+Lorem ipsum dolor sit amet	Lorem piom dolor sit amet	3
+Lorem ipsum dolor sit amet	Lorem piou dolor sit amet	3
+Lorem ipsum dolor sit amet	Lorem pious dolor sit amet	3
+abcdef	ghijkl	6
