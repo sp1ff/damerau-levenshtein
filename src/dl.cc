@@ -1,3 +1,18 @@
+// Copyright (C) 2020 Michael Herstine <sp1ff@pobox.com>
+
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or (at
+// your option) any later version.
+
+// This program is distributed in the hope that it will be useful, but
+// WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+// General Public License for more details.
+
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see https://www.gnu.org/licenses/.
+
 #include <config.h>
 
 #include <stdlib.h>
@@ -255,6 +270,8 @@ fields:
 where A & B are two strings to be compared & D is their (previously computed)
 Damerau-Levenshtein distance. This program will exit with status zero if it
 computes the same value as D for all (A,B), and 1 if any differ.
+
+Please see %s for more discussion & links to these papers.
 )use";
 
 int
@@ -290,7 +307,7 @@ main(int argc, char **argv)
       }
       break;
     case 'h':
-      printf(USAGE, argv[0]);
+      printf(USAGE, argv[0], PACKAGE_URL);
       exit(0);
     case 'n':
       num_loops = atoi(optarg);

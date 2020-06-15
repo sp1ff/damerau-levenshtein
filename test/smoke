@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-${builddir}/../src/dl -a lw ${srcdir}/trivial.txt
-${builddir}/../src/dl -a uk ${srcdir}/trivial.txt
-${builddir}/../src/dl -a br ${srcdir}/trivial.txt
-${builddir}/../src/dl -a lw ${srcdir}/br.txt
-${builddir}/../src/dl -a uk ${srcdir}/br.txt
-${builddir}/../src/dl -a br ${srcdir}/br.txt

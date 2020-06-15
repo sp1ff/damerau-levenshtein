@@ -1,6 +1,24 @@
+// Copyright (C) 2020 Michael Herstine <sp1ff@pobox.com>
+
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or (at
+// your option) any later version.
+
+// This program is distributed in the hope that it will be useful, but
+// WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+// General Public License for more details.
+
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see https://www.gnu.org/licenses/.
+
 #include "lw.hh"
 
 #include <iostream>
+#ifndef HAVE_C_VARARRAYS
+#include <vector>
+#endif
 
 bool
 lowrance_wagner(const std::string &A,
@@ -21,7 +39,11 @@ lowrance_wagner(const std::string &A,
   size_t INF = nA + nB + 1;
 
   // This is the (in)famous matrix
+# ifdef HAVE_C_VARARRAYS
   size_t H[nA + 1][nB + 1];
+# else
+  vector<vector<size_t>> H(nA+1, vector<size_t>(nB+1));
+# endif
 
   for (size_t i = 0; i <= nA; ++i) {
     H[i][0] = i;

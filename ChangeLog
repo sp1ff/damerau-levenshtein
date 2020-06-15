@@ -1,0 +1,11 @@
+2020-06-15  Michael Herstine  <sp1ff@pobox.com>
+
+	Cleanup prior to first release.
+	    1. breaking up the test suite
+	    2. authored README
+	    3. added GPLv3
+	    4. misc project files (NEWS, AUTHORS, &c)
+
+2020-06-14  Michael Herstine  <sp1ff@pobox.com>
+
+	initial commit
