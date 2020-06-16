@@ -52,8 +52,8 @@
  *   edit distance is found to be outside a particular threshold (a common
  *   use case)
  *
- * - he went on to realize time & space savings by computing an ancillary
- *   function, rather than the primary recurrence relation
+ * - he went on to realize space savings by computing an ancillary function,
+ *   rather than the primary recurrence relation
  *
  * The algorithm runs in time O(s*min(m,n)) and space O(s*min(s,m,n)) where s is
  * the edit distance & m and n are the string lengths of \a A & \a B,

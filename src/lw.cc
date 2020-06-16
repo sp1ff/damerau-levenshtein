@@ -13,6 +13,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see https://www.gnu.org/licenses/.
 
+#include "config.h"
 #include "lw.hh"
 
 #include <iostream>
@@ -52,30 +53,30 @@ lowrance_wagner(const std::string &A,
     H[0][j] = j;
   }
 
-  for (size_t i = 1; i <= nA; ++i) {
+  for (size_t i = 1, im1 = 0; i <= nA; ++i, ++im1) {
     size_t DB = 0;
     for (size_t j = 1; j <= nB; ++j) {
       size_t i1 = DA[B[j-1]];
       size_t j1 = DB;
       size_t d = 0;
-      if (A[i-1] != B[j-1]) {
+      if (A[im1] != B[j-1]) {
         d = 1;
       } else {
         DB = j;
       }
-      size_t h1 = H[i-1][j-1] + d;
+      size_t h1 = H[im1][j-1] + d;
       size_t h2 = H[i][j-1] + 1;
-      size_t h3 = H[i-1][j] + 1;
+      size_t h3 = H[im1][j] + 1;
       size_t h4 = INF;
       if (i1 > 0 && j1 > 0) {
-        h4 = H[i1-1][j1-1] + (i-i1-1) + 1 + (j-j1-1);
+        h4 = H[i1-1][j1-1] + (im1-i1) + 1 + (j-j1-1);
       }
       if (h2 < h1) h1 = h2;
       if (h3 < h1) h1 = h3;
       if (h4 < h1) h1 = h4;
       H[i][j] = h1;
     }
-    DA[A[i-1]] = i;
+    DA[A[im1]] = i;
   }
 
   if (verb) {

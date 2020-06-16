@@ -82,18 +82,21 @@ read_corpus(const std::filesystem::path &pth, FOI pout)
 {
   using namespace std;
 
-  // TODO(sp1ff): figure out my exception handling strategy
-
   ifstream in(pth);
-  for (string line; getline(in, line); ) {
+  size_t lineno = 1;
+  for (string line; getline(in, line); ++lineno) {
     if (line.empty() || line[0] == '#') continue;
     string::size_type idx0 = line.find('\t');
     if (string::npos == idx0) {
-      throw std::runtime_error("idx0");
+      stringstream stm;
+      stm << "parse error in `" << pth << "', line " << lineno;
+      throw std::runtime_error(stm.str());
     }
     string::size_type idx1 = line.find('\t', idx0 + 1);
     if (string::npos == idx1) {
-      throw std::runtime_error("idx1");
+      stringstream stm;
+      stm << "parse error in `" << pth << "', line " << lineno;
+      throw std::runtime_error(stm.str());
     }
 
     *pout++ = make_tuple(line.substr(0, idx0),
@@ -354,6 +357,16 @@ main(int argc, char **argv)
     }
   }
 
-  return dl(algo, verbose, randomize, num_loops, print_timings, argv + optind,
-            argv + argc) ? EXIT_SUCCESS : EXIT_FAILURE;
+  int status = EXIT_SUCCESS;
+  try {
+    if (!dl(algo, verbose, randomize, num_loops, print_timings, argv + optind,
+            argv + argc)) {
+      status = EXIT_FAILURE;
+    }
+  } catch (const std::exception &ex) {
+    fprintf(stderr, "%s\n", ex.what());
+    status = 127;
+  }
+
+  return status;
 }

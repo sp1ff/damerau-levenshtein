@@ -16,6 +16,7 @@
 #ifndef BR_HH_INCLUDED
 #define BR_HH_INCLUDED 1
 
+#include <config.h>
 #include <algorithm>
 #include <string>
 #include <tuple>
@@ -141,9 +142,6 @@ test_berghel_roach(FII p0,
         } else {
           FKP[k + zero_k][p+1] = -1;
         }
-      } else if (p < abs_k) {
-        // TODO(sp1ff): not needed
-        // FKP[k + zero_k][p+1] = -inf;
       }
     }
   }

@@ -100,7 +100,6 @@ berghel_roach(const std::string &A,
 
   do {
     ptrdiff_t inc = p;
-    // TODO(sp1ff): if `p-1' is less than zero, do we have to count down?
     for (ptrdiff_t temp_p = 0; temp_p < p; ++temp_p) {
       ptrdiff_t x = n - m - inc;
       if (abs(x) <= temp_p) {
