@@ -1,5 +1,7 @@
 2020-06-15  Michael Herstine  <sp1ff@pobox.com>
 
+	Pre-release clean-up.
+
 	Final clean-up:
 	    1. removed use of vector from Berghel-Roach
 	    2. added a new test case-- tables from the original Damerau paper
