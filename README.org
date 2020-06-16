@@ -35,11 +35,23 @@ After reading this paper, I spent some time searching the literature for referen
 
 *  Results
 
-TODO:
+#+BEGIN_SRC bash
+>$: uname -a
+Linux saradoc 5.3.0-7625-generic #27~1576337002~19.10~bc3488b-Ubuntu SMP Sat Dec 14 18:31:03 UTC  x86_64 x86_64 x86_64 GNU/Linux
+>$: cd test && make timing-tests
+...
+Lowrance & Wagner: processing took 5500ms
+Ukkonen: processing took 1931ms
+Berghel & Roach: processing took 1175ms
+#+END_SRC
 
-  - Lowrance & Wagner: processing took 8122ms
-  - Ukkonen: processing took 1900ms
-  - Berghel & Roach: processing took 1759ms
+What do you know? The speed-up from Ukkonen to Berghel & Roach was 39.15%, very close to the promised 42% all those years ago.
+
+* ToDo
+
+In my benchmarking & speed-up, I've found it important to avoid the use of =std::vector=, which surprises me. The code is still rough, and makes use of the gcc extension of [[https://gcc.gnu.org/onlinedocs/gcc/Variable-Length.html#Variable-Length][Variable-Length Arrays]] (there is fall-back code that uses =vector= in case those aren't available).
+
+All the other references check for common prefixes before starting the algorithm, which I haven't tested, yet.
 
 * References
 

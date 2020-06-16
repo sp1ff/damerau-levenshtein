@@ -158,8 +158,8 @@ ukkonen(const std::string &A,
   ptrdiff_t n = B.length();
   ptrdiff_t inf = max(m, n); // |A,B| <= inf
 
-  // TODO(sp1ff): Allocating too much space, here. This
-  // implementation won't satisfy the space bounds.
+  // Allocating too much space, here. This implementation won't satisfy the
+  // space bounds.
 
   // To index into `f' in terms of (i,j), -m <= i <= n,
   // -1 <=j <= inf, do f[i+m][j+1]
@@ -192,16 +192,28 @@ ukkonen(const std::string &A,
     if (r <= 0) {
       for (ptrdiff_t k = -p; k <= p; ++k) {
         // f(k,p)
+#       if HAVE_C_VARARRAYS
         f[k+m][p+1] = algo_8(A, m, B, n, inf, k, p, inf+2, (ptrdiff_t*)f);
+#       else
+        f[k+m][p+1] = algo_8(A, m, B, n, inf, k, p, inf+2, f);
+#       endif
       }
     } else {
       for (ptrdiff_t k = max(-m, -p); k <= -r; ++k) {
         // f(k,p)
+#       if HAVE_C_VARARRAYS
         f[k+m][p+1] = algo_8(A, m, B, n, inf, k, p, inf+2, (ptrdiff_t*)f);
+#       else
+        f[k+m][p+1] = algo_8(A, m, B, n, inf, k, p, inf+2, f);
+#       endif
       }
       for (ptrdiff_t k = r; k <= max(n, p); ++k) {
         // f(k,p)
+#       if HAVE_C_VARARRAYS
         f[k+m][p+1] = algo_8(A, m, B, n, inf, k, p,  inf+2, (ptrdiff_t*)f);
+#       else
+        f[k+m][p+1] = algo_8(A, m, B, n, inf, k, p,  inf+2, f);
+#       endif
       }
     }
   }

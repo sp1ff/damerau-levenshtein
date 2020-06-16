@@ -1,5 +1,11 @@
 2020-06-15  Michael Herstine  <sp1ff@pobox.com>
 
+	Final clean-up:
+	    1. removed use of vector from Berghel-Roach
+	    2. added a new test case-- tables from the original Damerau paper
+
+	Continued source code clean-up; mostly removing various TODO items. Ukkonen implementation now respects HAVE_C_VARARRAYS.
+
 	Cleanup prior to first release.
 	    1. breaking up the test suite
 	    2. authored README

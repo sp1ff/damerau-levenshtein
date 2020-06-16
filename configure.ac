@@ -13,7 +13,7 @@ dnl General Public License for more details.
 dnl You should have received a copy of the GNU General Public License
 dnl along with this program. If not, see https://www.gnu.org/licenses/.
     
-AC_INIT([damerau levenshtein], [0.1.2], [sp1ff@pobox.com], [], [https://github.com/sp1ff/damerau-levenshtein])
+AC_INIT([damerau levenshtein], [0.1.3], [sp1ff@pobox.com], [], [https://github.com/sp1ff/damerau-levenshtein])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_SRCDIR([src/dl.cc])
 AM_INIT_AUTOMAKE([-Wall -Werror gnits std-options dist-bzip2 dist-xz])

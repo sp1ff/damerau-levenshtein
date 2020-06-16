@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 num_loops=${DL_NUM_LOOPS:-500000}
 echo -n "Lowrance & Wagner: "
-${builddir}/../src/dl -t -n $num_loops -a lw ${srcdir}/trivial.txt || ( echo "Error!"; exit 1 )
+${builddir}/../src/dl -r -t -n $num_loops -a lw ${srcdir}/trivial.txt || ( echo "Error!"; exit 1 )
 echo -n "Ukkonen: "
-${builddir}/../src/dl -t -n $num_loops -a uk ${srcdir}/trivial.txt || ( echo "Error!"; exit 1 )
+${builddir}/../src/dl -r -t -n $num_loops -a uk ${srcdir}/trivial.txt || ( echo "Error!"; exit 1 )
 echo -n "Berghel & Roach: "
-${builddir}/../src/dl -t -n $num_loops -a br ${srcdir}/trivial.txt || ( echo "Error!"; exit 1 )
+${builddir}/../src/dl -r -t -n $num_loops -a br ${srcdir}/trivial.txt || ( echo "Error!"; exit 1 )
