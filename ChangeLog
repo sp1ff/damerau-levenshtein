@@ -1,3 +1,7 @@
+2021-03-19  Michael Herstine  <sp1ff@pobox.com>
+
+	Clean-up-- remove the use of std::vector & variable-length arrays.
+
 2020-06-15  Michael Herstine  <sp1ff@pobox.com>
 
 	Pre-release clean-up.

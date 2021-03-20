@@ -1,4 +1,4 @@
-// Copyright (C) 2020 Michael Herstine <sp1ff@pobox.com>
+// Copyright (C) 2020-2021 Michael Herstine <sp1ff@pobox.com>
 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -17,9 +17,6 @@
 #include "lw.hh"
 
 #include <iostream>
-#ifndef HAVE_C_VARARRAYS
-#include <vector>
-#endif
 
 bool
 lowrance_wagner(const std::string &A,
@@ -40,17 +37,13 @@ lowrance_wagner(const std::string &A,
   size_t INF = nA + nB + 1;
 
   // This is the (in)famous matrix
-# ifdef HAVE_C_VARARRAYS
-  size_t H[nA + 1][nB + 1];
-# else
-  vector<vector<size_t>> H(nA+1, vector<size_t>(nB+1));
-# endif
+  size_t H[(nA + 1)*(nB + 1)];
 
   for (size_t i = 0; i <= nA; ++i) {
-    H[i][0] = i;
+    H[i*nB] = i;
   }
   for (size_t j = 0; j <= nB; ++j) {
-    H[0][j] = j;
+    H[j] = j;
   }
 
   for (size_t i = 1, im1 = 0; i <= nA; ++i, ++im1) {
@@ -64,33 +57,33 @@ lowrance_wagner(const std::string &A,
       } else {
         DB = j;
       }
-      size_t h1 = H[im1][j-1] + d;
-      size_t h2 = H[i][j-1] + 1;
-      size_t h3 = H[im1][j] + 1;
+      size_t h1 = H[im1*nB + j - 1] + d;
+      size_t h2 = H[i*nB + j - 1] + 1;
+      size_t h3 = H[im1*nB + j] + 1;
       size_t h4 = INF;
       if (i1 > 0 && j1 > 0) {
-        h4 = H[i1-1][j1-1] + (im1-i1) + 1 + (j-j1-1);
+        h4 = H[(i1-1)*nB + j1-1] + (im1-i1) + 1 + (j-j1-1);
       }
       if (h2 < h1) h1 = h2;
       if (h3 < h1) h1 = h3;
       if (h4 < h1) h1 = h4;
-      H[i][j] = h1;
+      H[i*nB + j] = h1;
     }
     DA[A[im1]] = i;
   }
 
   if (verb) {
-    cout << "computed distance is " << H[nA][nB] << endl;
+    cout << "computed distance is " << H[nA*nB + nB] << endl;
     for (size_t i = 0; i <= nA; ++i) {
       for (size_t j = 0; j <= nB; ++j) {
         if (j == 0) {
           cout << "|";
         }
-        cout << " " << H[i][j] << " |";
+        cout << " " << H[i*nB + j] << " |";
       }
       cout << endl;
     }
   }
 
-  return H[nA][nB] == known_dist;
+  return H[nA*nB + nB] == known_dist;
 }

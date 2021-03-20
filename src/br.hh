@@ -1,4 +1,4 @@
-// Copyright (C) 2020 Michael Herstine <sp1ff@pobox.com>
+// Copyright (C) 2020-2021 Michael Herstine <sp1ff@pobox.com>
 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -75,11 +75,7 @@ berghel_roach(const std::string &A,
               const std::string &B,
               size_t max_k,
               size_t max_p,
-#             ifdef HAVE_C_VARARRAYS
               std::ptrdiff_t *fkp,
-#             else
-              std::vector<std::vector<ptrdiff_t>> &fkp,
-#             endif // HAVE_C_VARARRAYS
               ptrdiff_t zero_k,
               size_t inf,
               std::size_t D,
@@ -135,25 +131,22 @@ test_berghel_roach(FII p0,
   // FKP[k + zero_k][p+1] (i.e. the exposition is incorrect in this regard).
   ptrdiff_t zero_k = inf;
 
-# ifdef HAVE_C_VARARRAYS
-  ptrdiff_t FKP[max_k][max_p];
+  // ptrdiff_t FKP[max_k][max_p];
+  ptrdiff_t FKP[max_k*max_p];
   for (ptrdiff_t i = 0; i < max_k; ++i) {
     for (ptrdiff_t j = 0; j < max_p; ++j) {
-      FKP[i][j] = -inf;
+      FKP[i*max_p+j] = -inf;
     }
   }
-# else
-  vector<vector<ptrdiff_t>> FKP(max_k, vector<ptrdiff_t>(max_p, -inf));
-# endif
   for (ptrdiff_t k = - zero_k; k <= zero_k; ++k) {
     ptrdiff_t abs_k = k;
     if (k < 0) abs_k = -k;
     for (ptrdiff_t p = -1; p <= (ptrdiff_t)inf; ++p) {
       if (p == abs_k - 1) {
         if (k < 0) {
-          FKP[k + zero_k][p+1] = abs_k - 1;
+          FKP[(k + zero_k)*max_p + p+1] = abs_k - 1;
         } else {
-          FKP[k + zero_k][p+1] = -1;
+          FKP[(k + zero_k)*max_p + p+1] = -1;
         }
       }
     }
@@ -165,11 +158,7 @@ test_berghel_roach(FII p0,
                   string A, B;
                   size_t d;
                   tie(A, B, d) = tc;
-#                 ifdef HAVE_C_VARARRAYS
                   return berghel_roach(A, B, max_k, max_p, (ptrdiff_t*)FKP, zero_k, inf, d, verb);
-#                 else
-                  return berghel_roach(A, B, max_k, max_p, FKP, zero_k, inf, d, verb);
-#                 endif
                 });
 }
 #endif // BR_HH_INCLUDED

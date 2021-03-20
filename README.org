@@ -5,7 +5,7 @@
 
 * Introduction
 
-This repository contains three implementations of [[https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance][Damerau-Levenshtein]] distance computation in C++ 17.
+This repository contains three implementations of [[https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance][Damerau-Levenshtein]] string distance computation in C++ 17.
 
 * The Program
 
@@ -21,19 +21,19 @@ This repo contains implementations of what I understand to be the three major al
 
 ** Lowrance & Wagner's Recursive Relation
 
-This is the algorithm laid out in Wikipedia (at the time of this writing). It is due to Lowrance & Wagner [2] and seems to be the most widely known. In their paper, they prove that under a few (reasonable) conditions, a simple |A| x |B| recurrence relation is sufficient to compute the D-L distance between strings A & B. Their algorithm runs in O(|A|*|B) time & space.
+This is the algorithm laid out in Wikipedia (at the time of this writing). It is due to Lowrance & Wagner [2] and seems to be the most widely known. In their paper, they prove that under a few (reasonable) conditions, a simple |A| x |B| recurrence relation is sufficient to compute the D-L distance between strings A & B. Their algorithm runs in O(|A|*|B|) time & space.
 
 ** Ukkonen
 
-Ten years later, Ukkonen substantially improved the performance of this calculation [3]. His paper contained two major advancements. He proved (again under conditions) that in order to compute the D-L distance, one need only compute the recurrence relation in a fairly tight band around its main diagonal (substantially decreasing the number of operations required). Next, he moved from the primary recurrence relation of Lowrance & Wagner to a dual problem of computing f(k,p) which is defined as the maximal index i on diagonal k for which the edit distance between A(1..i) & B(1..j) is p; this doesn't reduce the time complexity but does reduce that of space. His algorithm runs in O(s*min(|A|,|B|)) (where is the D-L distance between A & B) and space O(min(s,|A|,|B|)).
+Ten years later, Ukkonen substantially improved the performance of this calculation [3]. His paper contained two major advancements. He proved (again under conditions) that in order to compute the D-L distance, one need only compute the recurrence relation in a fairly tight band around its main diagonal (substantially decreasing the number of operations required). Next, he moved from the primary recurrence relation of Lowrance & Wagner to a dual problem of computing f(k,p) which is defined as the maximal index i on diagonal k for which the edit distance between A(1..i) & B(1..j) is p; this doesn't reduce the time complexity but does reduce that of space. His algorithm runs in O(s*min(|A|,|B|)) (where s is the D-L distance between A & B) and space O(min(s,|A|,|B|))).
 
 ** Berghel & Roach
 
-Eleven years on, Berghel & Roach improved Ukkonen's algorithm by deriving even tighter bounds on the region of the region of the recurrence relation that needs to be computed, leading to (in their application) a 42% speedup over Ukkonen. If s is the edit distance from A to B, and m & n their resp. string lengths, and WLOG n >= m, define p to be 1/2s - 1/(2*(n-m)). Then the worst-case running time of this algorithm is O(n*p) and the expected running time is O(n+(p*s)). 
+Eleven years on, Berghel & Roach improved Ukkonen's algorithm by deriving even tighter bounds on the region of the region of the recurrence relation that needs to be computed, leading to (in their application) a 42% speedup over Ukkonen. If s is the edit distance from A to B, and m & n their respective string lengths, and WLOG n >= m, define p to be 1/2s - 1/(2*(n-m)). Then the worst-case running time of this algorithm is O(n*p) and the expected running time is O(n+(p*s)). 
 
-After reading this paper, I spent some time searching the literature for references to it (looking for further improvements). I didn't find any directly-related improvements. Later references either cited it as the best known to the author(s)' for computing Damerau-Levenshtein distance, or as a point of interest in developing different string metrics.
+After reading this paper, I spent some time searching the literature for references to it (looking for further improvements). I didn't find any directly-related improvements. Later references either cited it as the best known to the author(s) for computing Damerau-Levenshtein distance, or as a point of interest in developing different string metrics.
 
-*  Results
+* Results
 
 #+BEGIN_SRC bash
 >$: uname -a
@@ -47,9 +47,9 @@ Berghel & Roach: processing took 1175ms
 
 What do you know? The speed-up from Ukkonen to Berghel & Roach was 39.15%, very close to the promised 42% all those years ago.
 
-* ToDo
+* TODO
 
-In my benchmarking & speed-up, I've found it important to avoid the use of =std::vector=, which surprises me. The code is still rough, and makes use of the gcc extension of [[https://gcc.gnu.org/onlinedocs/gcc/Variable-Length.html#Variable-Length][Variable-Length Arrays]] (there is fall-back code that uses =vector= in case those aren't available).
+In my benchmarking, I've found it important to avoid the use of =std::vector=, which surprises me. I've instead just used flat arrays & done the two-dimensional indexing manually.
 
 All the other references check for common prefixes before starting the algorithm, which I haven't tested, yet.
 

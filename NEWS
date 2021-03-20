@@ -1,6 +1,10 @@
 damerau–levenshtein News -- history of user-visible changes           -*- outline -*-
 
-* 0.1.4 release:
+* 0.2.0 release
+
+  - remove the check on C vararrays
+  - just use flat arrays; do the two-dimensional indexing manually
+* 0.1.4 release
 
   - initial release
   

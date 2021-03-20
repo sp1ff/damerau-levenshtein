@@ -1,4 +1,4 @@
-// Copyright (C) 2020 Michael Herstine <sp1ff@pobox.com>
+// Copyright (C) 2020-2021 Michael Herstine <sp1ff@pobox.com>
 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -28,21 +28,13 @@ namespace {
     size_t n,
     size_t max_k,
     size_t max_p,
-#   ifdef HAVE_C_VARARRAYS
     std::ptrdiff_t *fkp,
-#   else
-    std::vector<std::vector<ptrdiff_t>> &fkp,
-#   endif
     ptrdiff_t zero_k,
     size_t inf) {
 
     ptrdiff_t t = -inf;
     if (p >= 0) {
-#     ifdef HAVE_C_VARARRAYS
       t = fkp[(k + zero_k)*max_p+p] + 1;
-#     else
-      t = fkp[k + zero_k][p] + 1;
-#     endif
     }
     ptrdiff_t t2 = t;
     if (t > 0 && t < m && k+t-1 >= 0 && k + t < n) {
@@ -56,30 +48,18 @@ namespace {
     }
     ptrdiff_t ta = -inf;
     if (p >= 0) {
-#     ifdef HAVE_C_VARARRAYS
       ta = fkp[(k - 1 + zero_k)*max_p+p];
-#     else
-      ta = fkp[k - 1 + zero_k][p];
-#     endif
     }
     ptrdiff_t tb = -inf;
     if (p >= 0) {
-#     ifdef HAVE_C_VARARRAYS
       tb = fkp[(k + 1 + zero_k)*max_p+p] + 1;
-#     else
-      tb = fkp[k + 1 + zero_k][p] + 1;
-#     endif
     }
     if (ta > t) t = ta;
     if (tb > t) t = tb;
     if (t2 > t) t = t2;
     while (t < (ptrdiff_t)std::min(m, n - k) && A[t] == B[t+k]) ++t;
     if (k + zero_k >= 0 && p > -2) {
-#     ifdef HAVE_C_VARARRAYS
       fkp[(k + zero_k)*max_p+p+1] = t;
-#     else
-      fkp[k + zero_k][p+1] = t;
-#     endif
     }
     return t;
   }
@@ -91,11 +71,7 @@ berghel_roach(const std::string &A,
               const std::string &B,
               size_t max_k,
               size_t max_p,
-#             ifdef HAVE_C_VARARRAYS
               std::ptrdiff_t *fkp,
-#             else
-              std::vector<std::vector<ptrdiff_t>> &fkp,
-#             endif // HAVE_C_VARARRAYS
               ptrdiff_t zero_k,
               size_t inf,
               std::size_t D,
@@ -116,11 +92,7 @@ berghel_roach(const std::string &A,
     for (size_t k = 0; k < max_k; ++k) {
       for (size_t p = 0; p < max_p; ++p) {
         if (p != 0) cout << ", ";
-#       ifdef HAVE_C_VARARRAYS
         cout << fkp[k*max_p+p];
-#       else
-        cout << fkp[k][p];
-#       endif
       }
       cout << endl;
     }
@@ -141,11 +113,7 @@ berghel_roach(const std::string &A,
     }
     f(n - m, p, A, B, m, n, max_k, max_p, fkp, zero_k, inf);
     ++p;
-#   ifdef HAVE_C_VARARRAYS
     } while (fkp[(n - m + zero_k)*max_p+p] != m);
-#   else
-    } while (fkp[n - m + zero_k][p] != m);
-#   endif // HAVE_C_VALARRAYS
 
   size_t s = p - 1;
 
