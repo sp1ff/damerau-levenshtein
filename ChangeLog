@@ -1,6 +1,13 @@
+2021-07-18  Michael Herstine  <sp1ff@pobox.com>
+
+	Fix issue #2.
+	Change the conditional in function `f` in the implementation of
+	Berghel & Roach to be sure that any idexes into the strings are
+	legit.
+
 2021-03-19  Michael Herstine  <sp1ff@pobox.com>
 
-	Clean-up-- remove the use of std::vector & variable-length arrays.
+	Clean-up-- remove the use of std::vector & variable-length arrays. Do the two-dimensional indexing manually.
 
 2020-06-15  Michael Herstine  <sp1ff@pobox.com>
 

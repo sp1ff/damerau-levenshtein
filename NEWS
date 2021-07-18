@@ -1,5 +1,8 @@
 damerau–levenshtein News -- history of user-visible changes           -*- outline -*-
 
+* 0.2.1 release
+
+  - address https://github.com/sp1ff/damerau-levenshtein/issues/2
 * 0.2.0 release
 
   - remove the check on C vararrays

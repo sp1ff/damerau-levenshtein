@@ -14,12 +14,12 @@
 # along with this program. If not, see https://www.gnu.org/licenses/.
 
 EXTRA_DIST = lw-smoke uk-smoke br-smoke lw-br uk-br br-br lw-damerau \
-	uk-damerau br-damerau timing
+	uk-damerau br-damerau timing issue-2 issue-2.txt
 AM_TESTS_ENVIRONMENT=        \
 	srcdir=$(srcdir)     \
 	builddir=$(builddir)
 TESTS = lw-smoke uk-smoke br-smoke lw-br uk-br br-br lw-damerau uk-damerau \
-	br-damerau
+	br-damerau issue-2
 
 timing-tests: check-am FORCE
 	builddir=$(builddir) srcdir=$(srcdir) ./timing

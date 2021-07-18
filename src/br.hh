@@ -17,6 +17,7 @@
 #define BR_HH_INCLUDED 1
 
 #include <config.h>
+#include <cstddef>
 #include <algorithm>
 #include <string>
 #include <tuple>

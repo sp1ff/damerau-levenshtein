@@ -33,7 +33,7 @@ Eleven years on, Berghel & Roach improved Ukkonen's algorithm by deriving even t
 
 After reading this paper, I spent some time searching the literature for references to it (looking for further improvements). I didn't find any directly-related improvements. Later references either cited it as the best known to the author(s) for computing Damerau-Levenshtein distance, or as a point of interest in developing different string metrics.
 
-* Results
+* COMMENT Results
 
 #+BEGIN_SRC bash
 >$: uname -a
@@ -47,6 +47,19 @@ Berghel & Roach: processing took 1175ms
 
 What do you know? The speed-up from Ukkonen to Berghel & Roach was 39.15%, very close to the promised 42% all those years ago.
 
+More recent results:
+
+#+BEGIN_SRC bash
+  $> date
+  Sun Jul 18 16:21:21 PM PDT 2021
+  $> uname -a
+  Linux bree 5.12.14-arch1-1 #1 SMP PREEMPT Thu, 01 Jul 2021 07:26:06 +0000 x86_64 GNU/Linux
+  $> cd test && make timing-tests
+  ...
+  Lowrance & Wagner: processing took 7361ms
+  Ukkonen: processing took 1957ms
+  Berghel & Roach: processing took 1049ms
+#+END_SRC
 * TODO
 
 In my benchmarking, I've found it important to avoid the use of =std::vector=, which surprises me. I've instead just used flat arrays & done the two-dimensional indexing manually.
