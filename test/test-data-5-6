@@ -1,2 +1,4 @@
 #!/usr/bin/env bash
+# 100 test cases, generated with `make-dl-test-data`, using `--length=5`
+# and `num-edits=6`
 ${builddir}/../src/dl -a br ${srcdir}/test-data-5-6.txt
