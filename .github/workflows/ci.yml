@@ -1,0 +1,42 @@
+# Basic workflow to lint, build & test the package. Runs:
+#
+# - on demand
+# - on push
+# - on PR (open, edit or re-open)
+# - nightly at 01:42 UTC
+name: damerau-levenshtein Continuous Integration
+on:
+  workflow_dispatch:
+  # Per
+  # <https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#pull_request>:
+  # "if no activity types are specified, the workflow runs when a pull
+  # request is opened or reopened or when the head branch of the pull
+  # request is updated." That said, I've had difficulty getting workflows to trigger on PRs.
+  pull_request:
+    types: [opened, edited, reopened] # don't say `synchronize`-- that is taken care of by `push`
+  push:
+  # schedule:
+    # - cron: '42 01 * * *'
+
+jobs:
+  # All run in `/home/runner/work/ob-coq/ob-coq`.
+  lint_and_test:
+    name: Lint & Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repo
+        uses: actions/checkout@v4
+      - name: Install tooling
+        shell: bash
+        run: |
+          set -x
+          sudo apt-get install -y autoconf automake coq
+          autoconf --version
+          automake --version
+          coqtop --version
+      - name: Lint
+        shell: bash
+        run: 'admin/run-linters'
+      - name: Build & Test
+        shell: bash
+        run: 'admin/configure-to-distcheck'
