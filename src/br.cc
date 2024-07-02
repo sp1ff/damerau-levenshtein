@@ -83,6 +83,9 @@ berghel_roach(const std::string &A,
 
   size_t m = A.length();
   size_t n = B.length();
+  // If this assertion fires, the caller has violated our precondition that
+  // `A` be less than or equal to `B` in length.
+  assert(m <= n);
   // The minmal p will be at the end of diagonal k
   ptrdiff_t k = n - m;
   ptrdiff_t p = k;

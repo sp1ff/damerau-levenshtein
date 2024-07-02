@@ -34,6 +34,8 @@
  * \param B [in] the second of the two strings whose Damerau-Levenshtein
  * distance is to be computed
  *
+ * \pre \a A shall be less than or equal to \a B in length
+ *
  * \param D [in] the known Damerau-Levenshtein distance between \a A & \a B
  *
  * \param verb [in] if true, produce verbose progress messages on \c stdout

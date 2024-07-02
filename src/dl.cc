@@ -51,6 +51,9 @@ typedef std::tuple<std::string, std::string, size_t> test_case;
  * \param pout [in,out] A forward output iterator two which each test case read
  * from \a pth shall be copied
  *
+ * \post In each triple, the first string shall be less than or equal to the
+ * second in length
+ *
  *
  * In order to focus on the underlying algorithms for computing
  * Damerau-Levenshtein distance, I've kept the format of test cases, and the
@@ -72,6 +75,13 @@ typedef std::tuple<std::string, std::string, size_t> test_case;
  a\tb\t1
  kitten\tsitting\t3
  \endcode
+ *
+ *
+ * Nb this function will swap the two strings, if necessary, so that the second
+ * is at least as long as the first. This is to ensure that the precondition
+ * imposed by berghel_roach is met "up-front" and so we don't have to clutter
+ * the implementation, for now. I may come back & just update the implementation
+ * but for now I just want address issues #3 & #5.
  *
  *
  */
@@ -99,9 +109,15 @@ read_corpus(const std::filesystem::path &pth, FOI pout)
       throw std::runtime_error(stm.str());
     }
 
-    *pout++ = make_tuple(line.substr(0, idx0),
-                         line.substr(idx0 + 1, idx1 - idx0 - 1),
-                         (size_t)stoi(line.substr(idx1 + 1)));
+    if (idx0 < idx1 - idx0 - 1) {
+        *pout++ = make_tuple(line.substr(0, idx0),
+                             line.substr(idx0 + 1, idx1 - idx0 - 1),
+                             (size_t)stoi(line.substr(idx1 + 1)));
+    } else {
+        *pout++ = make_tuple(line.substr(idx0 + 1, idx1 - idx0 - 1),
+                             line.substr(0, idx0),
+                             (size_t)stoi(line.substr(idx1 + 1)));
+    }
   }
 
 }
