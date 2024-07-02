@@ -1,13 +1,32 @@
 damerau–levenshtein News -- history of user-visible changes           -*- outline -*-
 
-* 0.2.1 release
+* 0.2
 
-  - address https://github.com/sp1ff/damerau-levenshtein/issues/2
-* 0.2.0 release
+** 0.2.2
 
-  - remove the check on C vararrays
-  - just use flat arrays; do the two-dimensional indexing manually
-* 0.1.4 release
+*** Bugfixes
 
-  - initial release
+**** Fix issue 5
+
+Enforce the source string being shorter than or equal to the target in length for
+Berghel & Roach.
+*** User-visible Changes
+
+**** Add a test-generation program
+
+In `admin/make-dl-test-data`.
+** 0.2.1
+
+*** Bugfixes
+
+**** Fix https://github.com/sp1ff/damerau-levenshtein/issues/2
+** 0.2.0
+
+*** Bugfixes
+
+**** Remove the check on C vararrays
+**** Just use flat arrays; do the two-dimensional indexing manually
+* 0.1
+
+** 0.1.4 Initial Release
   

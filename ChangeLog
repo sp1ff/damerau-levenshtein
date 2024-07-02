@@ -1,3 +1,30 @@
+2024-07-02  Michael Herstine  <sp1ff@pobox.com>
+
+	Add additional test cases for Berghel & Roach.
+
+2024-07-02  Michael Herstine  <sp1ff@pobox.com>
+
+	Fix issue #5.
+	Berghel's & Roach's implementation assumes that the source string
+	is shorter than or equal to the target in length. This patch will
+	enforce this, both by:
+
+	    - asserting this condition in `berghel_roach()`, and
+	    - changing `read_corpus` to always sort the two strings
+	      by length before returning them
+
+2024-07-01  Michael Herstine  <sp1ff@pobox.com>
+
+	Start a CI workflow
+
+	Add a test data generation program
+
+	Fix broken link in the README
+
+	Tidy-up the project.
+	This patch will fix a few typos, add test data and add a signoff
+	script.
+
 2021-07-18  Michael Herstine  <sp1ff@pobox.com>
 
 	Fix issue #2.
