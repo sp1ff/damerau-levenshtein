@@ -1,0 +1,20 @@
+#+TITLE: README
+#+DESCRIPTION: make-dl-test-data README
+#+OPTIONS: num:nil ^:{}
+#+AUTHOR: Michael Herstine
+#+EMAIL: sp1ff@pobox.com
+#+DATE: <2024-07-01 Mon 21:27>
+#+AUTODATE: t
+#+STARTUP: overview
+
+#+BEGIN_SRC bash
+  hindent --line-length=80 --indent-size=2 app/Main.hs
+#+END_SRC
+
+Huh... there's a problem with the =random= library; this works:
+
+#+BEGIN_SRC bash
+  cabal run --enable-executable-dynamic --disable-executable-static dl-test-data -- -L 3 11
+  cabal -v run --enable-executable-dynamic --disable-executable-static dl-test-data -- -L 3 11
+#+END_SRC
+
