@@ -1,0 +1,3 @@
+bcac	cc	2
+cc	bcac	2
+

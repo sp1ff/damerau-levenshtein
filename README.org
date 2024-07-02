@@ -1,7 +1,9 @@
 #+TITLE: Comparing Damerau-Levenshtein Implementations
 #+AUTHOR: Michael Herstine
 #+EMAIL: sp1ff@pobox.com
-#+DATE: <2020-06-14 Sun 18:57>
+#+DATE: <2024-07-01 Mon 20:41>
+#+AUTODATE: t
+#+OPTIONS: ^:{}
 
 * Introduction
 
@@ -15,13 +17,13 @@ This package builds a program imaginatively named =dl=. It is installed via the 
 
 The Damerau-Levenshtein distance between two strings A & B is the minimal number of insertions, deletions, single-character changes & transpositions needed to transform A into B (e.g. "act" -> "cat" -> "cart", so the D-L distance between "act" & "cart" is two). In his original paper [1] Damerau claimed that 80% of the errors in the system which gave rise to his work could be accounted for by one of these four errors.
 
-While it's a popular algorithm for fuzzy searching, there doesn't seem to be a "go-to" implementations out there in C/C++ (it is a [[https://lists.boost.org/Archives/boost/2016/09/230756.php][feature request]] for the boost string library). There are several others on Github, but the ones I examined lacked both documentation on the algorithms used as well as test suites. 
+While it's a popular algorithm for fuzzy searching, there doesn't seem to be a "go-to" implementation out there in C/C++ (it is at the time of this writing a [[https://lists.boost.org/Archives/boost/2016/09/230756.php][feature request]] for the boost string library). There are several others on Github, but the ones I examined lacked both documentation on the algorithms used as well as test suites. 
 
 This repo contains implementations of what I understand to be the three major algorithms implementing Damerau-Levenshtein distance in C++.
 
 ** Lowrance & Wagner's Recursive Relation
 
-This is the algorithm laid out in Wikipedia (at the time of this writing). It is due to Lowrance & Wagner [2] and seems to be the most widely known. In their paper, they prove that under a few (reasonable) conditions, a simple |A| x |B| recurrence relation is sufficient to compute the D-L distance between strings A & B. Their algorithm runs in O(|A|*|B|) time & space.
+This is the algorithm laid out in Wikipedia (again at the time of this writing). It is due to Lowrance & Wagner [2] and seems to be the most widely known. In their paper, they prove that under a few (reasonable) conditions, a simple |A| x |B| recurrence relation is sufficient to compute the D-L distance between strings A & B. Their algorithm runs in O(|A|*|B|) time & space.
 
 ** Ukkonen
 
@@ -33,7 +35,7 @@ Eleven years on, Berghel & Roach improved Ukkonen's algorithm by deriving even t
 
 After reading this paper, I spent some time searching the literature for references to it (looking for further improvements). I didn't find any directly-related improvements. Later references either cited it as the best known to the author(s) for computing Damerau-Levenshtein distance, or as a point of interest in developing different string metrics.
 
-* COMMENT Results
+* Results
 
 #+BEGIN_SRC bash
 >$: uname -a

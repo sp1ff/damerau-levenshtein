@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+${builddir}/../src/dl -a br ${srcdir}/test-data-5-6.txt

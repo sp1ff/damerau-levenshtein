@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# This script is designed to be run either locally by the developer, or as part
+# of a Github action.
+
+set -x
+make distclean
+
+set -e
+./bootstrap
+./configure
+make
+if ! make check; then
+    test -f test/test-suite.log && cat test/test-suite.log
+    exit 1
+fi
+make distcheck
+

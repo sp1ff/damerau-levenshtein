@@ -13,13 +13,16 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see https://www.gnu.org/licenses/.
 
-EXTRA_DIST = lw-smoke uk-smoke br-smoke lw-br uk-br br-br lw-damerau \
-	uk-damerau br-damerau timing issue-2 issue-2.txt
+EXTRA_DIST = lw-smoke uk-smoke br-smoke lw-br uk-br br-br \
+	lw-damerau uk-damerau br-damerau \
+	issue-2 issue-2.txt \
+	issue-3 issue-3.txt \
+	test-data-5-6 test-data-5-6.txt
 AM_TESTS_ENVIRONMENT=        \
 	srcdir=$(srcdir)     \
 	builddir=$(builddir)
 TESTS = lw-smoke uk-smoke br-smoke lw-br uk-br br-br lw-damerau uk-damerau \
-	br-damerau issue-2
+	br-damerau issue-2 issue-3 test-data-5-6
 
 timing-tests: check-am FORCE
 	builddir=$(builddir) srcdir=$(srcdir) ./timing

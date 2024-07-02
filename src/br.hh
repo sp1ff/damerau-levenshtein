@@ -91,7 +91,7 @@ berghel_roach(const std::string &A,
  * of test cases (on which more below)
  *
  * \param p1 [in] A forward input iterator referencing the one-past-the-end
- * position of a rnage of test cases
+ * position of a range of test cases
  *
  * \param inf [in] Maximum length across all strings in the test corpus; unused
  * in this case, it is provided in case a given algorithm can optimize over all

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# Run a few linters. This script is designed to be run either locally by the
+# developer, or as part of a Github action.
+
+set -x
+rg -g '!README.org' \
+   -g '!run-linters' \
+   -g '!ChangeLog' \
+   -g '!aclocal.m4' \
+   -g '!config.status' \
+   'TODO|TOOD|LATER|DEBUG|IN-?PROGRESS|\\todo' && exit 1
+exit 0
+
