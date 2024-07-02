@@ -1,7 +1,7 @@
 #+TITLE: Comparing Damerau-Levenshtein Implementations
 #+AUTHOR: Michael Herstine
 #+EMAIL: sp1ff@pobox.com
-#+DATE: <2024-07-01 Mon 20:41>
+#+DATE: <2024-07-01 Mon 21:17>
 #+AUTODATE: t
 #+OPTIONS: ^:{}
 
@@ -71,6 +71,6 @@ All the other references check for common prefixes before starting the algorithm
 * References
 
   1. Fred J. Damerau, [[https://dl.acm.org/doi/pdf/10.1145/363958.363994][A Technique for Computer Detection and Correction of Spelling Errors]], Communications of the ACM, 7 (1964) No. 3, 171-176.
-  2. Roy Lowrance and Robert A. Wagner, [[file:///home/mgh/Documents/projects/damerau-levenshtein/an-extension-of-the-string-to-string-correction-problem.pdf][An Extension of the String-to-String Correction Problem]], Journal of the Association for Computing Machinery, 22 (1975), No 2, 177-183.
+  2. Roy Lowrance and Robert A. Wagner, [[https://dl.acm.org/doi/10.1145/321879.321880][An Extension of the String-to-String Correction Problem]], Journal of the Association for Computing Machinery, 22 (1975), No 2, 177-183.
   3. Esko Ukkonen, [[https://pdf.sciencedirectassets.com/273276/1-s2.0-S0019995885X8039X/1-s2.0-S0019995885800462/main.pdf?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEC8aCXVzLWVhc3QtMSJHMEUCIQC1kVaxnrMJhDDAI1LD%2BTc2nBVuHrD%2BdRlb5Pl6ZeyZFAIgZ9%2FBetqz2X%2FW0rNTKYvMMIk5J%2BBEUhZkX%2B9phg2P6FEqvQMIp%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARADGgwwNTkwMDM1NDY4NjUiDGM7R%2FG7LTgNdTuZIyqRA5g5dXRt3Yxs7po8YCnZUsf5l4wdeCN3zPs%2BGbm0FzYfB6yETNBjdh5WbLqvFhN4y5hytxrq16xgN%2FJC8a9eobnLDkEdo2e4kLQxfguqiuBM2hRLSZbaGIJgYjjqg8SC%2Bqf%2FjYy8y%2B8V%2BAnZ0tUj8YP%2FIA%2FsqfQ5v3CyUAbq3Ttrvezwiu%2FHkIS9lwQKWfP11OnUtIq%2FPydtKtEsJC13s7xwSaJ2ku%2F%2BhOAKkGjHm9qBqqzMQItk%2BhFldBjSZSbCU92Rs2X%2FdXq7xts94dWOeREKLBGKcc5KwRK%2FYl5XxB8QLIQHTXDVIe7%2BCVikPToPNOXXlxccQ2%2FWmErd5mCuLxDdV0d%2Bemzso%2FScwR9%2Byk%2B4LMl3vKq6pFl7uBtJLcqN8shVo5aiDnj1ur1RrcVitHMWxH2z8ntBltw50jFZHBCXAB8JdWKeZR2lbsyExS18uLUR5wtU9Ky56GlFfKmku9O%2B36yOfpQdKVaJmtcgmHMolR6kjsgkPx4Q39wtvDHpndT86AVFeqNJOyRf%2F5oclVcYMLOCnvcFOusBdNkaW87JMuP2MxnL37Fc1JMZZXdN3wJ4VojRZ31wYpoBAGnSZSnEtSlMRMOUcT8uR1R0HnAv43Sz0KMyvbZ%2FB6vZ4%2BdoRl72CUdIhWyaPDgYdO3PE7tdVlCGJsy5wmTVV7GLX0KxXd29cIW4%2FOi3U2iDTqOtpdrEs6E1fkLk%2FKSCJ%2By5l%2Fv6v%2FMgI6mQMR3O6S1iMq5NlY6ZWwWEh41GPGIIzNdeL7e7VV5lP2HRB8YuCd6XK4ceTxAjTLR%2BQxqZ7j8eRWsCLeJ%2Bhtjbsgoj1MmT%2BeM6%2Fz1iQxkxSMInTHDPG96aQ5NwGEuYsg%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200615T144720Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIAQ3PHCVTY7GOAFJ6P%2F20200615%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=51ea6d3e9359ae1018a9d683b9737c00a2295413ff2d8f3ba6f00745482e55fa&hash=acd357b2b5c9fef255e3dd287d3449c02c6b93e4d2166c529eb40fadfb5d0d18&host=68042c943591013ac2b2430a89b270f6af2c76d8dfd086a07176afe7c76c2c61&pii=S0019995885800462&tid=spdf-6ac21182-b6f2-4264-aca4-c6280a3bbd05&sid=f21bdeb18e69934eb97ba7f289c24d8ab1f3gxrqa&type=client][Algorithms for Approximate String Matching]], Information and Control, 64 (1985) 100--118.
   4. Hal Berghel and David Roach, [[http://berghel.net/publications/asm/asm.pdf][An Extension of Ukkonen's Enhanced Dynamic Programming ASM Algorithm]], ACM Transactions on Information Systems, 14 (1996) No. 1, 94-106.
