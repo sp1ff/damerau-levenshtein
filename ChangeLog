@@ -1,6 +1,11 @@
 2024-07-02  Michael Herstine  <sp1ff@pobox.com>
 
-	Add additional test cases for Berghel & Roach.
+	Cut release 0.2.2
+
+	Prep the branch for merge.
+	  - Add additional test cases for Berghel & Roach
+	  - Update NEWS
+	  - Update ChangeLog
 
 2024-07-02  Michael Herstine  <sp1ff@pobox.com>
 
