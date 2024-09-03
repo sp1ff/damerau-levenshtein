@@ -7,4 +7,3 @@ configure
 *.gz
 *.xz
 *.zst
-coq

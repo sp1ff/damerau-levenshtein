@@ -1,0 +1,12 @@
+#+TITLE: README
+#+DESCRIPTION: A Coq development of Damerau-Levenshtein edit distance
+#+DATE: <2024-09-03 Tue 13:52>
+#+AUTODATE: t
+#+AUTHOR: Michael Herstine
+#+EMAIL: sp1ff@pobox.com
+#+OPTIONS: toc:nil org-md-headline-style:setext *:t ^:nil ^:{}
+
+* Introduction
+
+This directory contains a [[https://coq.inria.fr/][Coq]] development of Damerau-Levenshtein edit distance. It's my first Coq development, so please don't judge it too harshly.
+

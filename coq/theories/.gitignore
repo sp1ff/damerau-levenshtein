@@ -1,0 +1,8 @@
+.lia.cache
+*.aux
+*.glob
+*.vo
+*.vok
+*.vos
+.old-files
+
